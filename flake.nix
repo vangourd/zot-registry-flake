@@ -11,7 +11,7 @@
     packages.${system}.zot = zot;
 
     nixosModules.zotModule = {
-      config, pkgs, ... }: {
+      config, pkgs, lib, ... }: {
       environment.systemPackages = [ zot ];
 
       users.users.zot = {
