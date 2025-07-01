@@ -17,6 +17,7 @@
       users.users.zot = {
         createHome = false;
         isSystemUser = true;
+        group = "zot";
         description = "Zot service user";
       };
 
