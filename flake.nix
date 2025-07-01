@@ -20,6 +20,10 @@
         description = "Zot service user";
       };
 
+      users.groups.zot = {
+        gid = 3000;
+      };
+
       systemd.services.zot = {
         description = "Zot OCI Registry";
         after = [ "network.target" ];
