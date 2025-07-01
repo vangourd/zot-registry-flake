@@ -14,6 +14,12 @@
       config, pkgs, ... }: {
       environment.systemPackages = [ zot ];
 
+      users.users.zot = {
+        createHome = false;
+        system = true;
+        description = "Zot service user";
+      };
+
       systemd.services.zot = {
         description = "Zot OCI Registry";
         after = [ "network.target" ];
@@ -28,11 +34,7 @@
         };
       };
 
-      users.users.zot = {
-        createHome = false;
-        system = true;
-        description = "Zot service user";
-      };
+      
     };
   };
 }
