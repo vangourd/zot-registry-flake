@@ -23,7 +23,7 @@
             '';
             description = "Default anon auth registry /etc/zot/config.yaml";
           }
-        };
+        }
       };
 
       config = lib.mkIf cfg.enable {
