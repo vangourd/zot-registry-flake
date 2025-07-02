@@ -14,7 +14,7 @@
       config, pkgs, lib, ... }: {
       
       options = {
-        services.zot {
+        services.zot = {
           enable = lib.mkEnableOption "Enable Module";
           configFile = lib.mkOption {
             type = lib.types.str;
