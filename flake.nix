@@ -13,22 +13,23 @@
     nixosModules.zotModule = {
       config, pkgs, lib, ... }: {
       
-      options.services.zot = {
-        enable = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Enable Zot service";
-        };
-        configFile = lib.mkOption {
-          type = lib.types.path;
-          default = ./config.yaml;
-          description = "Path to Zot config file";
+      options = {
+        services.zot {
+          enable = lib.mkEnableOption "Enable Module";
+          configFile = lib.mkOption {
+            type = lib.types.str;
+            default = ''
+            
+            '';
+            description = "Default anon auth registry /etc/zot/config.yaml";
+          }
         };
       };
 
-      config = lib.mkIf config.enable {
+      config = lib.mkIf cfg.enable {
 
         environment.systemPackages = [ zot ];
+        environment.etc."zot.conf".source = ./examples/config-anonymous-authz.yaml
 
         users.users.zot = {
           createHome = false;
