@@ -10,9 +10,11 @@
   in {
     packages.${system}.zot = zot;
 
-    nixosModules.zotModule = {
-      config, pkgs, lib, ... }: {
-      
+    nixosModules.zotModule = { lib, pkgs, config, ... }: 
+    with lib;
+    let
+      cfg = config.services.zot;
+    in {
       options = {
         services.zot = {
           enable = lib.mkEnableOption "Enable Module";
@@ -24,12 +26,12 @@
             description = "Default anon auth registry /etc/zot/config.yaml";
           };
         };
-      }
+      };
 
       config = lib.mkIf cfg.enable {
 
         environment.systemPackages = [ zot ];
-        environment.etc."zot.conf".source = ./examples/config-anonymous-authz.yaml
+        environment.etc."zot.conf".source = ./examples/config-anonymous-authz.yaml;
 
         users.users.zot = {
           createHome = false;
@@ -55,7 +57,6 @@
             NoNewPrivileges = true;
           };
         };
-
       };
     };
   };
