@@ -22,7 +22,7 @@
             
             '';
             description = "Default anon auth registry /etc/zot/config.yaml";
-          }
+          };
         };
       }
 
