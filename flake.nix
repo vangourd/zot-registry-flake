@@ -19,11 +19,9 @@
         services.zot = {
           enable = lib.mkEnableOption "Enable Module";
           configFile = lib.mkOption {
-            type = lib.types.str;
-            default = ''
-            
-            '';
-            description = "Default anon auth registry /etc/zot/config.yaml";
+            type = lib.types.path;
+            default = ./examples/config-anonymous-authz.yaml
+            description = "Path to config.yaml";
           };
         };
       };
@@ -31,7 +29,7 @@
       config = lib.mkIf cfg.enable {
 
         environment.systemPackages = [ zot ];
-        environment.etc."zot.conf".source = ./examples/config-anonymous-authz.yaml;
+        environment.etc."zot.conf".source = cfg.configFile;
 
         users.users.zot = {
           createHome = false;
