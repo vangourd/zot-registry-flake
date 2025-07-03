@@ -55,6 +55,11 @@
             NoNewPrivileges = true;
           };
         };
+
+        systemd.tmpfiles.rules = [
+          "d /tmp/zot 0755 zot zot -"
+        ];
+
       };
     };
   };
