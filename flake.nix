@@ -29,7 +29,7 @@
       config = lib.mkIf cfg.enable {
 
         environment.systemPackages = [ zot ];
-        environment.etc."zot.conf".source = cfg.configFile;
+        environment.etc.zot."config.yaml".source = cfg.configFile;
 
         users.users.zot = {
           createHome = false;
