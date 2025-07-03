@@ -20,7 +20,7 @@
           enable = lib.mkEnableOption "Enable Module";
           configFile = lib.mkOption {
             type = lib.types.path;
-            default = ./examples/config-anonymous-authz.yaml
+            default = ./examples/config-anonymous-authz.yaml;
             description = "Path to config.yaml";
           };
         };
